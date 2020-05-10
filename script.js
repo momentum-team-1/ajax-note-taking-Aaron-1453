@@ -11,35 +11,41 @@ function id() {
   return rtn;
 }
 
-let noteForm = document.querySelector("#note-form");
-let notes = document.querySelector(".notes");
+function clearInputs() {
+  return (noteDescInput.value = ""), (noteTitleInput.value = "");
+}
+
+// note form
+let noteForm = document.getElementById("note-form");
+
+// notes list
+let notesContainer = document.getElementById("notes-list-container");
 
 noteForm.addEventListener("submit", function (event) {
   event.preventDefault();
-  const noteTextInput = document.querySelector("#note-text");
-  const noteTitleInput = document.querySelector("#note-title");
-  const noteText = noteTextInput.value;
-  const noteTitle = noteTitleInput.value;
-  noteTextInput.value = "";
-  createNewNote(noteText, noteTitle);
-  //   renderNote();
+  let noteDescInput = document.getElementById("note-description");
+  let noteDesc = noteDescInput.value;
+  let noteTitleInput = document.getElementById("note-title");
+  let noteTitle = noteTitleInput.value;
+  noteDescInput.value = "";
+  noteTitleInput.value = "";
+  createNewNote(noteTitle, noteDesc);
+  console.log(noteTitle, noteDesc);
 });
 
-function createNewNote(noteText, noteTitle) {
+function createNewNote(title, body) {
   fetch("http://localhost:3000/notes", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       id: id(),
-      title: noteTitle,
-      body: noteText,
+      title: title,
+      body: body,
       created: moment().format(),
     }),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then(() => renderNote());
+  }).then((response) => {
+    return response.json();
+  });
 }
 
 function renderNotes() {
@@ -47,20 +53,27 @@ function renderNotes() {
     method: "GET",
   })
     .then((response) => response.json())
-    .then((notes) => {
-      // for (d of data)
-      for (note of notes) {
-        return note;
+    .then(function (notes) {
+      for (let note of notes) {
+        // create title h4 element
+        const title = document.createElement("h4");
+        title.innerText = note.title;
+        // create note body paragraph element
+        const body = document.createElement("p");
+        body.innerText = note.body;
+        // create note date paragraph element
+        const date = document.createElement("p");
+        date.innerText = note.created;
+        // wrap elements in div and give class of note
+        const noteDiv = document.createElement("div");
+        noteDiv.className = "note";
+        noteDiv.appendChild(title);
+        noteDiv.appendChild(body);
+        noteDiv.appendChild(date);
+        // insert note div into note-list-container
+        notesContainer.appendChild(noteDiv);
       }
     });
 }
-
-// .then(function (data) {
-//   console.log(data)
-//   let list = document.createElement("ul")
-//   list.id = "item-list"
-//   for (let item of data) {
-//   }
-// });
 
 renderNotes();

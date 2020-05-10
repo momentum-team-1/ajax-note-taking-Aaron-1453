@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="moment.min.js"></script>
-    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.shoelace.style/1.0.0-beta.25/shoelace.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
     <title>Notes</title>
   </head>
   <body>
-    <div id="note-form">
-      <form>
-        <input id="note-text" label="notes" />
-        <input id="note-title" label="notes" />
+    <div id="note-form-container">
+      <form id="note-form">
+        <input id="note-title" placeholder="title" />
+        <input id="note-description" placeholder="description" />
         <button>submit</button>
       </form>
-      <div class="notes"></div>
     </div>
+    <div id="notes-list-container"></div>
     <script src="script.js" defer></script>
   </body>
 </html>
