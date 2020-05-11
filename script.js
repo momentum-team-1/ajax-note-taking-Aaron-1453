@@ -41,6 +41,7 @@ notesContainer.addEventListener("click", function (event) {
   let target = event.target;
   if (target.matches("#edit")) {
     console.log("EDIT");
+    editNote(target.parentElement.dataset.id);
   }
 });
 
@@ -107,6 +108,17 @@ function renderNotesList() {
         // insert note div into note-list-container
         notesContainer.appendChild(noteDiv);
       }
+    });
+}
+
+function editNote(noteId) {
+  // assign varible to note div
+  let noteToEdit = document.querySelector(`[data-id='${noteId}]`);
+  // fetch request using patch method and pass it noteId
+  fetch(`http://localhost:3000/notes/${noteId}`, { method: "PATCH" })
+    //copied from delete function, need to modify but don't currently know what to put in
+    .then(function () {
+      notesContainer.removeChild(noteToEdit);
     });
 }
 
