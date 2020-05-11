@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Notes</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="moment.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.shoelace.style/1.0.0-beta.25/shoelace.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Notes</title>
+  </head>
+  <div class="header">
+    <h1>The Note Takin'ist App you'll ever find!</h1>
+  </div>
+  <body>
+    <div id="note-form-container">
+      <form id="note-form">
+        <label for="note-title">Title</label>
+        <input id="note-title" placeholder="title" />
+        <label for="note-description">Description</label>
+        <textarea
+          id="note-description"
+          rows="5"
+          placeholder="Enter the body of your note here"
+        ></textarea>
+        <button>submit</button>
+      </form>
+    </div>
+    <div id="notes-list-container"></div>
+    <script src="script.js" defer></script>
+  </body>
 </html>
