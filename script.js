@@ -111,15 +111,24 @@ function renderNotesList() {
     });
 }
 
-function editNote(noteId) {
-  // assign varible to note div
-  let noteToEdit = document.querySelector(`[data-id='${noteId}]`);
-  // fetch request using patch method and pass it noteId
-  fetch(`http://localhost:3000/notes/${noteId}`, { method: "PATCH" })
-    //copied from delete function, need to modify but don't currently know what to put in
-    .then(function () {
-      notesContainer.removeChild(noteToEdit);
-    });
-}
+// function editNote(title, body, noteId) {
+//   // assign varible to note div
+//   let noteToEdit = (document.querySelector(
+//     `[data-id='${noteId}]`.contentEditable = "true"
+//   )
+//   // fetch request using patch method and pass it noteId
+// fetch(`http://localhost:3000/notes/${noteId}`, {
+//     method: "PATCH",
+//     headers: { "Content-Type": "application/json" },
+//   }),
+//     JSON.stringify({
+//       id: noteId,
+//       title: title,
+//       body: body,
+//     }).then((response) => {
+//       return response.json();
+//     });
+// }
+//   //copied from delete function, need to modify but don't currently know what to put in
 
 renderNotesList();
